@@ -1,15 +1,17 @@
-/* rotate n x n array by 90 degrees clockwise */
+#include <stddef.h>
 
-void *rotate(int n, char array[n][n])
+/* rotate n x n array by 90 degrees clockwise */
+void *rotate(size_t n, int array[n][n])
 {
-	int nr, nc, t, m;
+	size_t nr, nc, m;
+	int t;
 
 	nr = n % 2 ? n / 2 + 1 : n / 2;
 	nc = n / 2;
 	m = n - 1;
 
-	for (int r = 0; r != nr; r++){
-		for (int c = 0; c != nc; c++){
+	for (size_t r = 0; r != nr; r++){
+		for (size_t c = 0; c != nc; c++){
 			t                   = array[r    ][c    ];
 			array[r    ][c    ] = array[m - c][r    ];
 			array[m - c][r    ] = array[m - r][m - c];
@@ -20,32 +22,47 @@ void *rotate(int n, char array[n][n])
 	return array;
 }
 
-/* print n x n array */
+#include <stdio.h>
 
-void print(int n, char array[n][n])
+/* print array */
+void print(size_t row, size_t col, int array[row][col])
 {
-	for (int r = 0; r != n; r++){
-		for (int c = 0; c != n; c++)
-			printf("%d ", array[r][c]);
+	for (size_t r = 0; r != row; r++){
+		for (size_t c = 0; c != col; c++)
+			printf("%3d", array[r][c]);
 		printf("\n");
 	}
 }
 
-/* main() */
 #include <stdio.h>
+
+/* main() */
 int main(void)
 {
-	int n = 5;
-	char array[n][n];
-	for (int r = 0; r != n; r++)
-		for (int c = 0; c != n; c++)
+	size_t n = 9;
+	int array[n][n];
+	for (size_t r = 0; r != n; r++)
+		for (size_t c = 0; c != n; c++)
 			array[r][c] = r * n + c + 1;
-
-	print(n, array);
-
+	print(n, n, array);
 	rotate(n, array);
 	printf("\n");
+	print(n, n, array);
 
-	print(n, array);
+	for (size_t r = 0; r != n; r++)
+		for (size_t c = 0; c != n; c++){
+			if (r < c)
+				array[r][c] = -1;
+			if (r == c)
+				array[r][c] = 0;
+			if (r > c)
+				array[r][c] = 1;
+		}
+	printf("\n");
+	print(n, n, array);
+	rotate(n, array);
+	printf("\n");
+	print(n, n, array);
+
 	return 0;
 }

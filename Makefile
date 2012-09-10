@@ -14,9 +14,9 @@ CXXFLAGS = -std=c++0x -Wall -W
 CPPFLAGS = -I ../include
 LDFLAGS  =
  
-CFLAGS   += -g
+#CFLAGS  += -g
 #CFLAGS  += -DNDEBUG
-CFLAGS   += -D_POSIX_SOURCE -D_BSD_SOURCE
+#CFLAGS  += -D_POSIX_SOURCE -D_BSD_SOURCE
 #LDFLAGS += -lpthread
  
 $(OUT): $(OBJS)
