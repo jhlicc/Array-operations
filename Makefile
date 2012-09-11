@@ -1,8 +1,7 @@
-# Visual Stupid Makefile 1628872598@qq.com
-# Layout: [include/]  src/
-# .c and Makefile in src, .h can be in include, no other directories.
-# Project related: CPPFLAGS
-# .cpp, CXX, CXXFLAGS for C++
+# Visual Stupid Makefile - Auto Makefile; https://github.com/jhlicc
+# Layout: [include/]  src/  (no additional directories)
+# .c and Makefile in src; .h in include (can be in src)
+# .cpp, CXX, CXXFLAGS for C++; CPPFLAGS for header include directory
  
 OUT      = main.out
 SRCS     = $(wildcard *.c)
